@@ -14,17 +14,17 @@ jobs:
       - name: Login to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker Image
-        run: docker build -t gagana/fnr-fe .
+        run: docker build -t gaganashree824/fnr-fe .
       - name: Publish image to docker hub
-        run: docker push gagana/fnr-fe:latest   
+        run: docker push gaganashree824/fnr-fe:latest   
 
   deploy: 
     needs: build
     runs-on: aws-ec2
     steps:
       - name: Pull image from docker hub
-        run: docker pull gagana/fnr-fe:latest
+        run: docker pull gaganashree824/fnr-fe:latest
       - name: Delete Old Container
         run: docker rm -f reactContainer
       - name: Run docker container
-        run: docker run -d -p 80:80 --name reactContainer gagana/fnr-fe   
+        run: docker run -d -p 80:80 --name reactContainer gaganashree824/fnr-fe   
